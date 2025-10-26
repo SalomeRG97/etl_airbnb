@@ -1,12 +1,13 @@
 import pandas as pd
 import logging
 from datetime import datetime
+import os
 
 class Logs:
     def __init__(self, nombre_archivo="transformacion"):
         fecha = datetime.now().strftime("%Y%m%d_%H%M")
         logging.basicConfig(
-            filename=f"../logs/{nombre_archivo}_{fecha}.log",
+            filename=f"logs/{nombre_archivo}_{fecha}.log",
             level=logging.INFO,
             format='%(asctime)s - %(levelname)s - %(message)s'
         )
@@ -32,8 +33,15 @@ class Transformacion:
 
     def normalizar_precios(self, col="price"):
         if col in self.df.columns:
-            self.df[col] = self.df[col].replace({'\$':'', ',':''}, regex=True).astype(float)
-            self.logs.info(f"Columna {col} normalizada a float")
+            # Reemplaza símbolos $ y comas
+            self.df[col] = (
+                self.df[col]
+                .replace({r"\$": "", ",": ""}, regex=True)
+                .replace("", pd.NA)  # Reemplaza vacíos por NaN
+            )
+            # Convierte a float ignorando errores
+            self.df[col] = pd.to_numeric(self.df[col], errors="coerce")
+            self.logs.info(f"Columna {col} normalizada a float (NaN para valores inválidos)")
 
     def convertir_fechas(self, col="last_review"):
         if col in self.df.columns:
@@ -49,5 +57,6 @@ class Transformacion:
             self.logs.info(f"Columnas año, mes, día y trimestre derivadas de {col}")
 
     def guardar_csv(self, ruta="../data/listings_limpio.csv"):
+        os.makedirs(os.path.dirname(os.path.abspath(ruta)), exist_ok=True)
         self.df.to_csv(ruta, index=False)
         self.logs.info(f"DataFrame limpio guardado en {ruta}")
