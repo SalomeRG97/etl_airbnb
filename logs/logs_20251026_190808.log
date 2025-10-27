@@ -1,0 +1,9 @@
+2025-10-26 19:08:08,170 - INFO - Connected to MongoDB database: local
+2025-10-26 19:08:08,170 - INFO - Getting documents from collection: listings
+2025-10-26 19:08:08,171 - INFO - Document size: 2
+2025-10-26 19:08:08,172 - INFO - Getting documents from collection: reviews
+2025-10-26 19:08:08,172 - INFO - Document size: 2
+2025-10-26 19:08:08,173 - INFO - Getting documents from collection: calendar
+2025-10-26 19:08:08,173 - INFO - Document size: 2
+2025-10-26 19:08:08,181 - INFO - Transformacion iniciada. Registros iniciales: 2
+2025-10-26 19:08:08,182 - INFO - Duplicados eliminados: 0

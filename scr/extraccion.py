@@ -3,7 +3,7 @@ import pandas as pd
 from pymongo import MongoClient
 from pymongo.errors import ConfigurationError
 
-from .logs import Logs
+from logs import Logs
 
 class Extraccion:
     def __init__(self):

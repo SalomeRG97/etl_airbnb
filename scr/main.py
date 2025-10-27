@@ -1,4 +1,5 @@
-from .extraccion import Extraccion
+from extraccion import Extraccion
+from transformacion import Transformacion 
 import pandas as pd
 
 # Datos para conectar a mongodb
@@ -25,8 +26,26 @@ print(reviews_docs)
 print("Calendar:")
 print(calendar_docs)
 
+tf = Transformacion(listings_docs)
+tf.limpiar_duplicados()
+tf.limpiar_nulos(["name", "price"]) 
+if "last_review" in tf.df.columns:
+    tf.convertir_fechas("last_review")
+    tf.derivar_columnas_fecha("last_review")
+
+tf.guardar_csv("../data/listings_limpio.csv")
+
+print("=== Listings Transformados ===")
+print(tf.df.head())
+print("=== Reviews ===")
+print(reviews_docs.head())
+print("=== Calendar ===")
+print(calendar_docs.head())
+
+
+print("Transformación completada y archivo guardado")
+
 def ejecutar_etl():
-    # Datos para conectar a MongoDB
     uri = "mongodb://localhost:27017/"
     database = "airbnb"
     listings_collection_name = "listings"
@@ -45,11 +64,3 @@ def ejecutar_etl():
     calendar_df = extraccion.get_documents_to_df(calendar_col)
 
     return listings_df, reviews_df, calendar_df
-
-
-# Solo se ejecuta si se corre desde Bash
-if __name__ == "__main__":
-    l, r, c = ejecutar_etl()
-    print("Listings:", l.shape)
-    print("Reviews:", r.shape)
-    print("Calendar:", c.shape)
