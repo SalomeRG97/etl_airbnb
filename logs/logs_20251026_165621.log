@@ -1,7 +1,0 @@
-2025-10-26 16:56:21,476 - INFO - Connected to MongoDB database: local
-2025-10-26 16:56:21,477 - INFO - Getting documents from collection: listings
-2025-10-26 16:56:21,478 - INFO - Document size: 0
-2025-10-26 16:56:21,480 - INFO - Getting documents from collection: reviews
-2025-10-26 16:56:21,481 - INFO - Document size: 0
-2025-10-26 16:56:21,482 - INFO - Getting documents from collection: calendar
-2025-10-26 16:56:21,483 - INFO - Document size: 0
