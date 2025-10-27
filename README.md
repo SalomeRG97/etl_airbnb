@@ -9,7 +9,7 @@ Este proyecto realiza un **ETL completo** (Extracción, Transformación y Carga)
 - Se registra toda la actividad de transformación en **logs**.
 
 ## Estructura del Proyecto
-
+```bash
 etl_airbnb/
 ├── data/
 │ ├── listings.csv.gz 
@@ -25,6 +25,7 @@ etl_airbnb/
 ├── notebooks/
 │ └── exploracion_airbnb.ipynb
 └── README.md
+```
 
 ## Requisitos
 
