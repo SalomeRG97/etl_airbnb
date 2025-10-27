@@ -55,3 +55,17 @@ etl_airbnb/
 - Cantidad de registros antes y después de cada limpieza.
 - Errores de conversión y valores nulos.
 - Columnas derivadas.
+
+## Integrantes y responsabilidades
+- Salomé Ruiz Gallego
+    - Preparar el repositorio.
+    - Desarrollar clase de transformación.
+    - Estructura del trabajo escrito.
+    - Revisión de PR's.
+- Sergio Esteban Franco Agudelo
+    - Desarrollar clase de extracción.
+    - Desarrollar clase de log.
+    - Revisión de PR's.
+- Jorge Elias Builes Chavarría
+    - Desarrollar clase de carga.
+    - Estructura de trabajo escrito.

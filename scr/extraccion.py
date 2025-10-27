@@ -7,7 +7,7 @@ from logs import Logs
 
 class Extraccion:
     def __init__(self):
-        self.logs = Logs()
+        self.logs = Logs(file_name="extraccion")
 
     def connect_to_mongodb(self, uri, database):
         try:

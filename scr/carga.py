@@ -3,31 +3,24 @@ import sqlite3
 import logging
 import os
 
+from scr.logs import Logs
+
 class Carga:
     def __init__(self, archivo_csv, nombre_bd="airbnb_cdmx.db", archivo_excel="listings_summary_cargado.xlsx"):
         self.archivo_csv = archivo_csv
         self.nombre_bd = nombre_bd
         self.archivo_excel = archivo_excel
-        self.log_file = "etl_carga.log"
+        self.logs = Logs("carga")
 
-        logging.basicConfig(
-            filename=self.log_file,
-            level=logging.INFO,
-            format="%(asctime)s - %(levelname)s - %(message)s"
-        )
-        self.registrar_log("Inicio del proceso de carga")
-
-    def registrar_log(self, mensaje):
-        logging.info(mensaje)
-        print(mensaje)
+        self.logs.log("Inicio del proceso de carga", "info")
 
     def crear_conexion_sqlite(self):
         try:
             conn = sqlite3.connect(self.nombre_bd)
-            self.registrar_log("Conexión a SQLite establecida correctamente.")
+            self.logs.log("Conexión a SQLite establecida correctamente.", "info")
             return conn
         except Exception as e:
-            self.registrar_log(f"Error al conectar con SQLite: {e}")
+            self.logs.log(f"Error al conectar con SQLite: {e}", "error")
             raise
 
     def crear_tabla_listings(self, conn):
@@ -38,9 +31,9 @@ class Carga:
             sql = f"CREATE TABLE IF NOT EXISTS listings_summary ({columnas_sql});"
             conn.execute(sql)
             conn.commit()
-            self.registrar_log("Tabla 'listings_summary' creada correctamente.")
+            self.logs.log("Tabla 'listings_summary' creada correctamente.", "info")
         except Exception as e:
-            self.registrar_log(f"Error al crear la tabla: {e}")
+            self.logs.log(f"Error al crear la tabla: {e}", "error")
             raise
 
     def insertar_datos_sqlite(self, conn):
@@ -49,18 +42,18 @@ class Carga:
             df.to_sql("listings_summary", conn, if_exists="replace", index=False)
             conn.commit()
             filas = conn.execute("SELECT COUNT(*) FROM listings_summary").fetchone()[0]
-            self.registrar_log(f"{filas} registros insertados en la base de datos SQLite.")
+            self.logs.log(f"{filas} registros insertados en la base de datos SQLite.", "info")
         except Exception as e:
-            self.registrar_log(f"Error al insertar los datos: {e}")
+            self.logs.log(f"Error al insertar los datos: {e}", "error")
             raise
 
     def exportar_excel(self):
         try:
             df = pd.read_csv(self.archivo_csv)
             df.to_excel(self.archivo_excel, index=False)
-            self.registrar_log(f"Datos exportados correctamente a {self.archivo_excel}.")
+            self.logs.log(f"Datos exportados correctamente a {self.archivo_excel}.", "info")
         except Exception as e:
-            self.registrar_log(f"Error al exportar a Excel: {e}")
+            self.logs.log(f"Error al exportar a Excel: {e}", "error")
             raise
 
     def ejecutar_carga(self):
@@ -69,10 +62,10 @@ class Carga:
             self.crear_tabla_listings(conn)
             self.insertar_datos_sqlite(conn)
             self.exportar_excel()
-            self.registrar_log("Proceso de carga completado exitosamente.")
+            self.logs.log("Proceso de carga completado exitosamente.", "info")
             conn.close()
         except Exception as e:
-            self.registrar_log(f"Fallo en el proceso de carga: {e}")
+            self.logs.log(f"Fallo en el proceso de carga: {e}", "error")
             raise
 
 

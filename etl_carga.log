@@ -1,6 +1,0 @@
-2025-10-26 16:50:26,227 - INFO - Inicio del proceso de carga
-2025-10-26 16:50:26,228 - INFO - Conexión a SQLite establecida correctamente.
-2025-10-26 16:50:26,256 - INFO - Tabla 'listings_summary' creada correctamente.
-2025-10-26 16:50:26,274 - INFO - 81 registros insertados en la base de datos SQLite.
-2025-10-26 16:50:26,279 - INFO - Error al exportar a Excel: No module named 'openpyxl'
-2025-10-26 16:50:26,279 - INFO - Fallo en el proceso de carga: No module named 'openpyxl'

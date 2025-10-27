@@ -1,9 +1,0 @@
-2025-10-26 19:05:30,060 - INFO - Connected to MongoDB database: local
-2025-10-26 19:05:30,060 - INFO - Getting documents from collection: listings
-2025-10-26 19:05:30,061 - INFO - Document size: 2
-2025-10-26 19:05:30,062 - INFO - Getting documents from collection: reviews
-2025-10-26 19:05:30,062 - INFO - Document size: 2
-2025-10-26 19:05:30,063 - INFO - Getting documents from collection: calendar
-2025-10-26 19:05:30,063 - INFO - Document size: 2
-2025-10-26 19:05:30,071 - INFO - Transformacion iniciada. Registros iniciales: 2
-2025-10-26 19:05:30,072 - INFO - Duplicados eliminados: 0

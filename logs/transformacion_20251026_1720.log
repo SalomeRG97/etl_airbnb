@@ -1,7 +1,0 @@
-2025-10-26 17:20:26,967 - INFO - Transformacion iniciada. Registros iniciales: 4
-2025-10-26 17:20:26,967 - INFO - Duplicados eliminados: 0
-2025-10-26 17:20:26,968 - INFO - Nulos en columna name: 1 reemplazados por ''
-2025-10-26 17:20:26,968 - INFO - Nulos en columna price: 1 reemplazados por ''
-2025-10-26 17:20:26,969 - INFO - Columna price normalizada a float (NaN para valores inválidos)
-2025-10-26 17:20:26,971 - INFO - Columna last_review convertida a datetime
-2025-10-26 17:20:26,972 - INFO - Columnas año, mes, día y trimestre derivadas de last_review
